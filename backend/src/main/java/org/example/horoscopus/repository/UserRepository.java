@@ -1,9 +1,11 @@
 package org.example.horoscopus.repository;
 
-import org.example.horoscopus.model.User;
+import org.example.horoscopus.model.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+import java.util.Optional;
 
-    boolean findUserByEmailOrPasswordOrUserName(String email, String password, String userName);
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
+
+    Optional<UserEntity> findByUserName(String userName);
 }

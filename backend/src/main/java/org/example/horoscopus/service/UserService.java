@@ -2,24 +2,30 @@ package org.example.horoscopus.service;
 
 import jakarta.persistence.PersistenceException;
 import org.example.horoscopus.DTO.RegisterUserDTO;
-import org.example.horoscopus.model.User;
+import org.example.horoscopus.model.Role;
+import org.example.horoscopus.model.UserEntity;
 import org.example.horoscopus.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository) {
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public boolean saveNewUser(RegisterUserDTO registerUserDTO) {
 
-        User user = new User(registerUserDTO.getUsername(), registerUserDTO.getEmail(), registerUserDTO.getPassword());
+        UserEntity userEntity = new UserEntity(registerUserDTO.getUsername(), registerUserDTO.getEmail(),
+                passwordEncoder.encode(registerUserDTO.getPassword()), Role.ROLE_USER);
         try {
-            userRepository.save(user);
+            userRepository.save(userEntity);
             return true;
         } catch (PersistenceException e) {
             return false;
