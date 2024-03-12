@@ -1,22 +1,25 @@
 import LoginForm from "./LoginForm.tsx";
 import {LoginUser} from "../../types/types.ts";
+import {useNavigate} from "react-router-dom";
 
-function LoginPage (){
+function LoginPage() {
+    const navigate = useNavigate()
 
-
- async function loginUser (user : LoginUser) {
+    async function loginUser(user: LoginUser) {
         const response = await fetch("api/user/login", {
-            method : "POST",
-            headers : {
-                "content-type" : "application/json"
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
             },
-            body : JSON.stringify(user)
+            body: JSON.stringify(user)
         })
-     if (response.status === 200) {
-         console.log("handle")
-     } else {
-         console.log("handle somehow")
-     }
+        const authorizationHeader = response.headers.get('Authorization');
+        if (response.ok && authorizationHeader !== null) {
+            localStorage.setItem("jwt-token", authorizationHeader)
+            navigate("/home")
+        } else {
+            console.log("Unauthorized!")
+        }
     }
 
     return (
