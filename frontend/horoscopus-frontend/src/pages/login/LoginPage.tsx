@@ -9,7 +9,7 @@ function LoginPage() {
         const response = await fetch("api/user/login", {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(user)
         })

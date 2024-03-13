@@ -15,7 +15,7 @@ function LoginForm ({onSave} :onSaveProp) {
 
         const data = new FormData(event.currentTarget)
         const user : LoginUser = {
-            email : String(data.get("email")),
+            userName : String(data.get("userName")),
             password : String(data.get("password"))
         }
         onSave(user)
@@ -28,8 +28,8 @@ function LoginForm ({onSave} :onSaveProp) {
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="field">
-                    <input name="email" type="text" required/>
-                        <label>Email Address</label>
+                    <input name="userName" type="text" required/>
+                        <label>Username</label>
                 </div>
                 <div className="field">
                     <input name="password" type="password" required/>

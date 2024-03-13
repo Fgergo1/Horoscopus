@@ -7,6 +7,7 @@ export type RegistrationUser = {
 }
 
 export type LoginUser = {
+    userName : String
     password : String,
-    email : String
+
 }
