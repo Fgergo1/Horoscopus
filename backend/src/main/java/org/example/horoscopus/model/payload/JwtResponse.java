@@ -16,4 +16,16 @@ public class JwtResponse {
         this.userName = userName;
         this.roles = roles;
     }
+
+    public String getJwt() {
+        return jwt;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
 }
