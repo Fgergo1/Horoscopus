@@ -94,3 +94,8 @@ form .text h3 a{
 form .text h3 a:hover{
     text-decoration: underline;
 }
+
+.error-message {
+    color: red;
+    font-size: small;
+}
