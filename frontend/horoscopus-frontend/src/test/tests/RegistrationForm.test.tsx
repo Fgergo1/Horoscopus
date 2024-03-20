@@ -1,5 +1,5 @@
-import RegistrationForm from "./pages/registration/RegistrationForm.tsx";
-import {render} from "./utils/test-utils.ts";
+import RegistrationForm from "../../pages/registration/RegistrationForm.tsx";
+import {render} from "../../utils/test-utils.ts";
 import {screen, fireEvent} from "@testing-library/react";
 import {vi} from "vitest";
 import userEvent from '@testing-library/user-event';
