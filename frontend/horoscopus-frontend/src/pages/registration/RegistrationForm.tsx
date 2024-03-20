@@ -8,7 +8,22 @@ onSave : (user : RegistrationUser, setError : Dispatch<SetStateAction<string | n
 function RegistrationForm ({onSave} : RegisterProp) {
     const [error, setError] = useState<string | null>(null)
 
+    function validatePassword(password : string) {
+        const minLength = 8;
+        if (password.length < minLength) {
+             setError("Password must be at least " + minLength + " characters long.");
+        }
 
+        const pattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/;
+
+        if (pattern.test(password)) {
+            return true
+        } else {
+            setError("Password must contain at least one digit, lowercase letter," +
+                " uppercase letter, special character, and at least have 8 character!")
+        }
+
+    }
     function handleSubmit (event : React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
         const data = new FormData(event.currentTarget)
@@ -21,8 +36,11 @@ function RegistrationForm ({onSave} : RegisterProp) {
             email : String(data.get("email"))
         }
 
-        onSave(user, setError)
+        if (validatePassword((user.password.toString()))) {
+            onSave(user, setError)
+        }
     }
+
 
 
     return (
@@ -33,7 +51,7 @@ function RegistrationForm ({onSave} : RegisterProp) {
                     <input name="username" type="text" placeholder="Enter your name"  required/>
                 </div>
                 <div className="input-box">
-                    <input name="email" type="text" placeholder="Enter your email" required/>
+                    <input name="email" type="email" placeholder="Enter your email" required/>
                 </div>
                 <div className="input-box">
                     <input name="password" type="password" placeholder="Create password" required/>
@@ -41,7 +59,7 @@ function RegistrationForm ({onSave} : RegisterProp) {
                 <div className="input-box">
                     <input name="re-pass" type="password" placeholder="Confirm password" required/>
                 </div>
-                {error && <p>{error}</p>}
+                {error && <p className="error-message">{error}</p>}
                 <div className="policy" data-testid="policy">
                     <input type="checkbox"/>
                         <h3>I accept all terms & condition</h3>
