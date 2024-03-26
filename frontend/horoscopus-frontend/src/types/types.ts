@@ -11,3 +11,11 @@ export type LoginUser = {
     password : String,
 
 }
+
+export type Horoscope = {
+    id : number,
+    name : string,
+    description : string,
+    period : string,
+    image : string
+}
