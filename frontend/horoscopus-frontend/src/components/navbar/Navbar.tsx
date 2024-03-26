@@ -7,7 +7,7 @@ function Navbar() {
         <>
             <div className="topnav">
                 <Button name="home" text="Home" to="home"/>
-                <Button name="Horoscopes" text="Horoscopes" to="horos"/>
+                <Button name="Horoscopes" text="Horoscopes" to="horoscopes"/>
                 <Button name="renadom" text="random" to="random"/>
                 <Button name="about" text="about" to="about"/>
 
