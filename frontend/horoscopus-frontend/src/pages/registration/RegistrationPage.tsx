@@ -14,10 +14,8 @@ const navigate = useNavigate()
           body : JSON.stringify(user)
       })
        if (response.status === 201) {
-           console.log("User successfully created! ")
            navigate("/login")
        } else {
-           console.log("This email or username is used!")
            errorState("This email or username is used!")
        }
 
