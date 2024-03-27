@@ -13,7 +13,6 @@ function RegistrationForm ({onSave} : RegisterProp) {
         if (password.length < minLength) {
              setError("Password must be at least " + minLength + " characters long.");
         }
-
         const pattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/;
 
         if (pattern.test(password)) {
@@ -23,6 +22,14 @@ function RegistrationForm ({onSave} : RegisterProp) {
                 " uppercase letter, special character, and at least have 8 character!")
         }
 
+    }
+
+    function validateUsername (username : String ) {
+        if (username.length > 4) {
+            return true
+        } else {
+            setError("Username length must be 4 long!")
+        }
     }
     function handleSubmit (event : React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
@@ -36,7 +43,7 @@ function RegistrationForm ({onSave} : RegisterProp) {
             email : String(data.get("email"))
         }
 
-        if (validatePassword((user.password.toString()))) {
+        if (validatePassword((user.password.toString())) && validateUsername(user.username.toString())) {
             onSave(user, setError)
         }
     }
