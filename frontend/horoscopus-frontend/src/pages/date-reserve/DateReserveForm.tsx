@@ -14,7 +14,7 @@ function DateReserveForm () {
 
 
     async function getFreeDates () {
-        const response = await fetch("/api/dates", {
+        const response = await fetch("/api/date/free", {
             method : "GET",
             headers : {
                 "content-type" : "application/json"
