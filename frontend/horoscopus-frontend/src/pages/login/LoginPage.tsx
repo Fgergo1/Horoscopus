@@ -1,5 +1,5 @@
 import LoginForm from "./LoginForm.tsx";
-import {LoginUser} from "../../types/types.ts";
+import {JwtResponse, LoginUser} from "../../types/types.ts";
 import {useNavigate} from "react-router-dom";
 
 function LoginPage() {
@@ -13,9 +13,11 @@ function LoginPage() {
             },
             body: JSON.stringify(user)
         })
+        const data : JwtResponse = await response.json()
         const authorizationHeader = response.headers.get('Authorization');
         if (response.ok && authorizationHeader !== null) {
             localStorage.setItem("jwt-token", authorizationHeader)
+            localStorage.setItem("role", data.roles[0])
             navigate("/home")
         } else {
             console.log("Unauthorized!")
