@@ -15,8 +15,8 @@ const  DateReservePage  = (props : ReservePageProps) => {
                     <p>{"Free dates :"}</p>
                     {dates.map((date: ReserveDate) => (
                         <>
-                            <p>{date.start}</p>
-                            <p>{date.end}</p>
+                            <p>{date.interval}</p>
+
                         </>
                     ))}
                 </div>
