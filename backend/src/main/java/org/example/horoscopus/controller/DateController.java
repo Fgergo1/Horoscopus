@@ -37,7 +37,7 @@ public class DateController {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete")
     public ResponseEntity<?> deleteDate (@RequestBody FreeDateDTO date) {
         if (dateService.deleteDate(date)) {
             return new ResponseEntity<>(HttpStatus.OK);
