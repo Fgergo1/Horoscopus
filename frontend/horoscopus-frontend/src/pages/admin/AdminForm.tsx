@@ -3,14 +3,12 @@ import React from "react";
 
 interface saveDateProp {
     saveDate: (date: ReserveDate) => Promise<void>
-    access : boolean
+    access: boolean
 }
 
-const AdminForm = (props : saveDateProp) => {
+const AdminForm = (props: saveDateProp) => {
 
-const {saveDate, access} = props
-
-
+    const {saveDate, access} = props
 
 
     function handleSaveDate(event: React.FormEvent<HTMLFormElement>) {
@@ -19,7 +17,7 @@ const {saveDate, access} = props
         const data = new FormData(event.currentTarget)
 
         const date: ReserveDate = {
-            interval: String(data.get("name"))
+            interval: String(data.get("date"))
         }
         saveDate(date)
     }
