@@ -12,7 +12,7 @@ public class FreeDateEntity {
     @GeneratedValue
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String timeInterval;
 
     public FreeDateEntity(String timeInterval) {
@@ -20,11 +20,24 @@ public class FreeDateEntity {
     }
 
     public FreeDateEntity() {
-
     }
 
 
     public String getTimeInterval() {
         return timeInterval;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setTimeInterval(String timeInterval) {
+        this.timeInterval = timeInterval;
+    }
 }
+
+
