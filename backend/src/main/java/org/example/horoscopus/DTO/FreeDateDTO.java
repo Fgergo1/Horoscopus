@@ -2,14 +2,18 @@ package org.example.horoscopus.DTO;
 
 public class FreeDateDTO {
 
-    private String date;
+    private String interval;
 
-    public FreeDateDTO(String date) {
-        this.date = date;
+    public FreeDateDTO() {
+
+    }
+
+    public FreeDateDTO(String interval) {
+        this.interval = interval;
     }
 
 
-    public String getDate() {
-        return date;
+    public String getInterval() {
+        return interval;
     }
 }
