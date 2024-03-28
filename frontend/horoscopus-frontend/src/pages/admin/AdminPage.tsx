@@ -18,9 +18,12 @@ function AdminPage () {
 
 
     async function addNewFreeDate (date : ReserveDate) : Promise<void> {
+        const token = localStorage.getItem("jwt-token")
+
         const response = await fetch("api/date/add", {
             method : "POST",
             headers : {
+                "Authorization" : "Bearer " + token,
                 "content-type" : "application/json"
             },
             body : JSON.stringify(date)
