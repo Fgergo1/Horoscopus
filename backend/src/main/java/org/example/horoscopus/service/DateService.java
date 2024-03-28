@@ -15,7 +15,7 @@ public class DateService {
     }
 
     public List<FreeDateDTO> getFreeDatesFromDatabase () {
-       return repository.getAll().stream().map((freeDateEntity -> new FreeDateDTO(freeDateEntity.getTimeInterval())))
+       return repository.findAll().stream().map((freeDateEntity -> new FreeDateDTO(freeDateEntity.getTimeInterval())))
                .toList();
   }
 

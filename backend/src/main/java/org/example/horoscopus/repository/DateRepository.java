@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DateRepository extends JpaRepository<FreeDateEntity,Long> {
 
-    List<FreeDateEntity> getAll();
+
     boolean deleteByTimeInterval(String interval);
 
 }
