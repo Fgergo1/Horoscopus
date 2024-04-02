@@ -20,11 +20,11 @@ public class DateService {
   }
 
   public boolean deleteDate (FreeDateDTO freeDateDTO) {
-        return repository.deleteByTimeInterval(freeDateDTO.getDate());
+        return repository.deleteByTimeInterval(freeDateDTO.getInterval());
   }
   public boolean saveNewDate (FreeDateDTO freeDateDTO) {
         try {
-            repository.save(new FreeDateEntity(freeDateDTO.getDate()));
+            repository.save(new FreeDateEntity(freeDateDTO.getInterval()));
             return true;
         } catch (Exception exception) {
             return false;
