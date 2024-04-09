@@ -1,14 +1,14 @@
 import {ReserveDate} from "../../types/types.ts";
-import {SetStateAction, useState} from "react";
+import {Dispatch, SetStateAction, useState} from "react";
 import "./DateCard.css"
 
 
 interface DateWriteProp  {
     dates : ReserveDate[]
+    setId : Dispatch<SetStateAction<number | undefined>>
 }
-function DateCard ({dates} : DateWriteProp) {
+function DateCard ({dates, setId} : DateWriteProp) {
     const [active,setActive] = useState<SetStateAction<ReserveDate | null>>(null)
-
     return (
         <>
             <div className="date-container">
@@ -17,8 +17,11 @@ function DateCard ({dates} : DateWriteProp) {
                     {dates.map((date: ReserveDate) => (
                         <>
                             <p
-                            onClick={() => setActive(date)}
-                            className={`date-item  ${active === date && 'active'}`}
+                            onClick={() => {
+                                setActive(date)
+                                setId(date.id)
+                            }}
+                            className={`date-item ${active === date && 'active'}`}
                             >{date.interval}</p>
                         </>
                     ))}

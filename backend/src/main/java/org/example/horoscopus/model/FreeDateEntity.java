@@ -1,11 +1,9 @@
 package org.example.horoscopus.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name="free_date")
 public class FreeDateEntity {
 
     @Id
@@ -15,12 +13,20 @@ public class FreeDateEntity {
     @Column(unique = true)
     private String timeInterval;
 
-    public FreeDateEntity(String timeInterval) {
+    private boolean reserved;
+
+    @ManyToOne
+    @JoinColumn(name = "horoscope_user_id")
+    private UserEntity userEntity;
+
+    public FreeDateEntity(String timeInterval, boolean reserved) {
         this.timeInterval = timeInterval;
+        this.reserved = reserved;
     }
 
     public FreeDateEntity() {
     }
+
 
 
     public String getTimeInterval() {
@@ -37,6 +43,22 @@ public class FreeDateEntity {
 
     public void setTimeInterval(String timeInterval) {
         this.timeInterval = timeInterval;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setReserved(boolean reserved) {
+        this.reserved = reserved;
+    }
+
+    public boolean isReserved() {
+        return reserved;
     }
 }
 
