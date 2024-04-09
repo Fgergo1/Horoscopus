@@ -37,9 +37,9 @@ public class DateController {
         }
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteDate (@RequestBody FreeDateDTO date) {
-        if (dateService.deleteDate(date)) {
+    @DeleteMapping("/reserve")
+    public ResponseEntity<?> deleteDate (@RequestHeader(name = "Authorization") String authHeader,@RequestBody Long date) {
+        if (dateService.reserveDate(authHeader,date)) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
