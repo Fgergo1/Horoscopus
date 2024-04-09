@@ -8,6 +8,7 @@ import HomePage from "./pages/home/HomePage.tsx";
 import HoroscopePage from "./pages/horoscope/HoroscopePage.tsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import AdminPage from "./pages/admin/AdminPage.tsx";
+import DateReserveForm from "./pages/date-reserve/DateReserveForm.tsx";
 
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path : "/admin",
                 element : <AdminPage/>
+            },
+            {
+                path : "/reserve",
+                element : <DateReserveForm/>
             }
         ]
     }

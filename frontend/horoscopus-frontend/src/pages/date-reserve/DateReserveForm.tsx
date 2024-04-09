@@ -2,9 +2,9 @@ import DateReservePage from "./DateReservePage.tsx";
 import {useEffect, useState} from "react";
 import {ReserveDate} from "../../types/types.ts";
 
-function DateReserveForm () {
+function DateReserveForm() {
 
-    const [freeDates,setFreeDates] = useState<Array<ReserveDate>>([])
+    const [freeDates, setFreeDates] = useState<ReserveDate[]>([])
     const [error, setError] = useState<string | null>(null)
 
 
@@ -13,21 +13,22 @@ function DateReserveForm () {
     }, []);
 
 
-    async function getFreeDates () {
+    async function getFreeDates() {
         const response = await fetch("/api/date/free", {
-            method : "GET",
-            headers : {
-                "content-type" : "application/json"
+            method: "GET",
+            headers: {
+                "content-type": "application/json"
             },
         })
-       const data = await response.json()
+        const data = await response.json()
 
-       if (response.status === 200 ) {
-           setFreeDates(data.dates)
-       } else if (response.status === 500) {
-           setError("Something goes wrong! Please try it later!")
-       }
+        if (response.status === 200) {
+            setFreeDates(data)
+        } else if (response.status === 500) {
+            setError("Something goes wrong! Please try it later!")
+        }
     }
+
 
     return (
         <DateReservePage dates={freeDates} error={error}/>
