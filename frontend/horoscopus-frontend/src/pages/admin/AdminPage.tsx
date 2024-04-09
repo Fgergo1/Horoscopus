@@ -3,9 +3,14 @@ import {ReserveDate} from "../../types/types.ts";
 import {useEffect, useState} from "react";
 function AdminPage () {
     const [available, setAvailable] = useState(false)
+    const [freeDates,setFreeDates] = useState<Array<ReserveDate>>([])
+    const [error, setError] = useState<string | null>(null)
+
+
 
     useEffect(() => {
         checkAccess()
+        getFreeDates()
     }, []);
 
     function checkAccess() {
@@ -13,6 +18,22 @@ function AdminPage () {
 
         if (role === "ROLE_ADMIN") {
             setAvailable(true)
+        }
+    }
+
+    async function getFreeDates () {
+        const response = await fetch("/api/date/free", {
+            method : "GET",
+            headers : {
+                "content-type" : "application/json"
+            },
+        })
+        const data = await response.json()
+
+        if (response.status === 200 ) {
+            setFreeDates(data.dates)
+        } else if (response.status === 500) {
+            setError("Something goes wrong! Please try it later!")
         }
     }
 
@@ -36,7 +57,7 @@ function AdminPage () {
 
 
     return (
-        <AdminForm saveDate={addNewFreeDate} access={available} />
+        <AdminForm saveDate={addNewFreeDate} date={freeDates} access={available} error={error} />
     )
 }
 

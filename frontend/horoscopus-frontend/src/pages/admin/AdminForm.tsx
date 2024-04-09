@@ -1,14 +1,17 @@
 import {ReserveDate} from "../../types/types.ts";
 import React from "react";
+import DateCard from "../date-reserve/DateCard.tsx";
 
 interface saveDateProp {
     saveDate: (date: ReserveDate) => Promise<void>
     access: boolean
+    date : ReserveDate[]
+    error : string | null
 }
 
 const AdminForm = (props: saveDateProp) => {
 
-    const {saveDate, access} = props
+    const {saveDate, access, date,error} = props
 
 
     function handleSaveDate(event: React.FormEvent<HTMLFormElement>) {
@@ -32,7 +35,7 @@ const AdminForm = (props: saveDateProp) => {
                         <input type="text" name="date"></input>
                         <button type="submit">Save new date</button>
                     </form>
-
+                    {error ? <p>Something goes wrong"</p> : <DateCard dates={date} />}
                 </div>
             </> :
             <>
