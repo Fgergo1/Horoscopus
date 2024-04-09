@@ -1,0 +1,13 @@
+.date-item {
+    background-color: black;
+    width: 100px;
+    height: 30px;
+    font-style: italic;
+    color: white;
+}
+.date-item .active {
+    background-color: white;
+    font-style: italic;
+    color : black;
+
+}
