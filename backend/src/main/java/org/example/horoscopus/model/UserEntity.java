@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="horoscope_users")
+
 public class UserEntity {
 
     @Id
@@ -18,7 +18,7 @@ public class UserEntity {
     @Column(unique=true)
     private String email;
 
-    @OneToMany(mappedBy = "free_date", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
     private Set<FreeDateEntity> date;
 
     private String password;
