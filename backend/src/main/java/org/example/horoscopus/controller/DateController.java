@@ -37,7 +37,7 @@ public class DateController {
         }
     }
 
-    @DeleteMapping("/reserve")
+    @PostMapping("/reserve")
     public ResponseEntity<?> deleteDate (@RequestHeader(name = "Authorization") String authHeader,@RequestBody Long date) {
         if (dateService.reserveDate(authHeader,date)) {
             return new ResponseEntity<>(HttpStatus.OK);
