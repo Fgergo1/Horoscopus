@@ -3,7 +3,6 @@ package org.example.horoscopus.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="free_date")
 public class FreeDateEntity {
 
     @Id
@@ -13,10 +12,10 @@ public class FreeDateEntity {
     @Column(unique = true)
     private String timeInterval;
 
-    private boolean reserved;
+    private Boolean reserved;
 
     @ManyToOne
-    @JoinColumn(name = "horoscope_user_id")
+    @JoinColumn(name = "userEntity_id")
     private UserEntity userEntity;
 
     public FreeDateEntity(String timeInterval, boolean reserved) {
