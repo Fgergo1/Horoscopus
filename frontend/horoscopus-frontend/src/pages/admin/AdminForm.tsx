@@ -20,7 +20,8 @@ const AdminForm = (props: saveDateProp) => {
         const data = new FormData(event.currentTarget)
 
         const date: ReserveDate = {
-            interval: String(data.get("date"))
+            interval: String(data.get("date")),
+            reserve : false
         }
         saveDate(date)
     }
