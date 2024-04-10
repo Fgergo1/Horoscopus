@@ -26,7 +26,8 @@ export type JwtResponse = {
 }
 
 export type ReserveDate = {
-    id : number
-    interval : string
+    id?: number ,
+    interval : string,
+    reserve : boolean
 }
 

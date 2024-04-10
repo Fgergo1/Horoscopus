@@ -2,6 +2,8 @@ package org.example.horoscopus.DTO;
 
 public class FreeDateDTO {
 
+    private Long id;
+
     private String interval;
 
     private boolean reserved;
@@ -10,9 +12,10 @@ public class FreeDateDTO {
 
     }
 
-    public FreeDateDTO(String interval) {
+    public FreeDateDTO(Long id, String interval, boolean reserved) {
+        this.id = id;
         this.interval = interval;
-        this.reserved  = false;
+        this.reserved  = reserved;
     }
 
 
@@ -23,4 +26,12 @@ public class FreeDateDTO {
     public boolean getReserved() {
         return reserved;
     }
+
+
+
+    public Long getId() {
+        return id;
+    }
+
+
 }

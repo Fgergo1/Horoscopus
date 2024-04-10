@@ -13,9 +13,12 @@ function DateReserveForm() {
     }, []);
 
     async function reserveDateById(id : number | undefined) {
+        console.log(id)
+        const token = localStorage.getItem("jwt-token")
         const response = await fetch("/api/date/reserve", {
             method : "POST",
             headers : {
+                "Authorization" : "Bearer " + token,
                 "content-type" : "application/json"
             },
             body : JSON.stringify(id)

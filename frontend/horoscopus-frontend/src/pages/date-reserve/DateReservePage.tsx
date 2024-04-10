@@ -20,7 +20,8 @@ const  DateReservePage  = (props : ReservePageProps) => {
     return !error ? (
        <>
            <DateCard dates={dates} setId={setActiveId}/>
-           <button onClick={() => handleReserveDate(activeId)}>Reserve date</button>
+           {dates && <button onClick={() => handleReserveDate(activeId)}>Reserve date</button>}
+
        </>
     ) : (
         <p>{error}</p>

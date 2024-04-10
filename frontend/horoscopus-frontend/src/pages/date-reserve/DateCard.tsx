@@ -5,7 +5,7 @@ import "./DateCard.css"
 
 interface DateWriteProp  {
     dates : ReserveDate[]
-    setId : Dispatch<SetStateAction<number | undefined>>
+    setId? : Dispatch<SetStateAction<number | undefined>>
 }
 function DateCard ({dates, setId} : DateWriteProp) {
     const [active,setActive] = useState<SetStateAction<ReserveDate | null>>(null)
@@ -19,7 +19,9 @@ function DateCard ({dates, setId} : DateWriteProp) {
                             <p
                             onClick={() => {
                                 setActive(date)
-                                setId(date.id)
+                                if (setId) {
+                                    setId(date.id)
+                                }
                             }}
                             className={`date-item ${active === date && 'active'}`}
                             >{date.interval}</p>

@@ -22,8 +22,8 @@ public class DateService {
         this.jwtUtils = jwtUtils;
     }
 
-    public List<FreeDateDTO> getFreeDatesFromDatabase () {
-       return dateRepository.findAllByReservedFalse().stream().map((freeDateEntity -> new FreeDateDTO(freeDateEntity.getTimeInterval())))
+    public List<FreeDateDTO> getFreeDatesFromDatabase () {System.out.println("mizu");
+       return dateRepository.findAllByReservedFalse().stream().map((freeDateEntity -> new FreeDateDTO(freeDateEntity.getId(), freeDateEntity.getTimeInterval(), freeDateEntity.isReserved())))
                .toList();
   }
 
@@ -35,8 +35,15 @@ public class DateService {
             Optional<FreeDateEntity> freeDate = dateRepository.findById(dateId);
 
             if (user.isPresent() && freeDate.isPresent()) {
-                user.get().addNewDate(freeDate.get());
-                freeDate.get().setReserved(true);
+                UserEntity userEntity = user.get();
+                FreeDateEntity date = freeDate.get();
+
+                userEntity.addNewDate(date);
+                date.setReserved(true);
+
+                userRepository.save(userEntity);
+                dateRepository.save(date);
+
                 return true;
             } else {
                 return false;
