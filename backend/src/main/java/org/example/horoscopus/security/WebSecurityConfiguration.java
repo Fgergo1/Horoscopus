@@ -64,6 +64,7 @@ public class WebSecurityConfiguration {
                                 .requestMatchers("/api/date/add").hasAnyRole("ADMIN")
                                 .requestMatchers("/api/date/delete").permitAll()
                                 .requestMatchers("/api/date/free").permitAll()
+                                .requestMatchers("/api/date/reserve").permitAll()
                                 .requestMatchers("/error").permitAll()
                                 .anyRequest().authenticated()
 
