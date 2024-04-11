@@ -46,4 +46,14 @@ public class DateController {
         }
     }
 
+    @GetMapping("/reserved")
+    public ResponseEntity<?> getReservedDatesByName(@RequestParam String name) {
+        List<FreeDateDTO> reservedDates = dateService.getFreeDatesFromDatabase();
+        if (!reservedDates.isEmpty()) {
+            return ResponseEntity.ok(reservedDates);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
