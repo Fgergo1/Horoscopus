@@ -1,14 +1,8 @@
-export type RegistrationUser = {
-    username: String,
-    password: String,
-    rePassword: String,
-    email: String
-}
-
-export type LoginUser = {
-    userName: String
-    password: String,
-
+export type User = {
+    username: string,
+    password?: string,
+    rePassword?: string,
+    email?: string
 }
 
 export type Horoscope = {

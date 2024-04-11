@@ -1,6 +1,7 @@
 import DateReservePage from "./DateReservePage.tsx";
 import {useEffect, useState} from "react";
 import {ReserveDate} from "../../types/types.ts";
+import Navbar from "../../components/navbar/Navbar.tsx";
 
 function DateReserveForm() {
 
@@ -12,16 +13,16 @@ function DateReserveForm() {
         getFreeDates()
     }, []);
 
-    async function reserveDateById(id : number | undefined) {
+    async function reserveDateById(id: number | undefined) {
         console.log(id)
         const token = localStorage.getItem("jwt-token")
         const response = await fetch("/api/date/reserve", {
-            method : "POST",
-            headers : {
-                "Authorization" : "Bearer " + token,
-                "content-type" : "application/json"
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer " + token,
+                "content-type": "application/json"
             },
-            body : JSON.stringify(id)
+            body: JSON.stringify(id)
 
         })
 
@@ -53,7 +54,10 @@ function DateReserveForm() {
 
 
     return (
-        <DateReservePage dates={freeDates} onReserve={reserveDateById} error={error}/>
+        <>
+            <Navbar/>
+            <DateReservePage dates={freeDates} onReserve={reserveDateById} error={error}/>
+        </>
     )
 }
 

@@ -1,9 +1,9 @@
-import {RegistrationUser} from "../../types/types.ts";
+import {User} from "../../types/types.ts";
 import React, {Dispatch, SetStateAction, useState} from "react";
 import "./RegistrationForm.css"
 
 interface RegisterProp {
-onSave : (user : RegistrationUser, setError : Dispatch<SetStateAction<string | null>>) => Promise<void>
+onSave : (user : User, setError : Dispatch<SetStateAction<string | null>>) => Promise<void>
 }
 function RegistrationForm ({onSave} : RegisterProp) {
     const [error, setError] = useState<string | null>(null)
@@ -36,14 +36,14 @@ function RegistrationForm ({onSave} : RegisterProp) {
         const data = new FormData(event.currentTarget)
 
 
-        const user : RegistrationUser = {
+        const user : User = {
             username : String(data.get("username")),
             password : String(data.get("password")),
             rePassword : String(data.get("re-pass")),
             email : String(data.get("email"))
         }
 
-        if (validatePassword((user.password.toString())) && validateUsername(user.username.toString())) {
+        if (validatePassword((user.password!.toString())) && validateUsername(user.username.toString())) {
             onSave(user, setError)
         }
     }
