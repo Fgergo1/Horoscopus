@@ -15,10 +15,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -68,6 +65,24 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.ok("This is from the catch: " + e.getMessage());
         }
+    }
+
+    @GetMapping("/check")
+    public ResponseEntity<?> checkUserNameIsFree(@RequestParam String name) {
+
+        if (userService.checkName(name)) {
+            return  ResponseEntity.ok().build();
+        }
+        return ResponseEntity.status(HttpStatus.CONFLICT).build();
+
+    }
+
+    @GetMapping("/check")
+    public ResponseEntity<?> checkEmailIsFree(@RequestParam String email) {
+        if (userService.checkEmail(email)) {
+            return  ResponseEntity.ok().build();
+        }
+        return ResponseEntity.status(HttpStatus.CONFLICT).build();
     }
 
 }
