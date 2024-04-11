@@ -4,6 +4,7 @@ import org.example.horoscopus.model.FreeDateEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Set;
 
 
 public interface DateRepository extends JpaRepository<FreeDateEntity,Long> {
@@ -13,6 +14,6 @@ public interface DateRepository extends JpaRepository<FreeDateEntity,Long> {
 
     void deleteById(Long id);
 
-
+    List<FreeDateEntity> findAllByUserEntityUserName(String name);
 
 }

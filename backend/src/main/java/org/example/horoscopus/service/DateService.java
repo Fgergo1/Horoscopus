@@ -1,4 +1,5 @@
 package org.example.horoscopus.service;
+
 import org.example.horoscopus.DTO.FreeDateDTO;
 import org.example.horoscopus.model.FreeDateEntity;
 import org.example.horoscopus.model.UserEntity;
@@ -6,6 +7,7 @@ import org.example.horoscopus.repository.DateRepository;
 import org.example.horoscopus.repository.UserRepository;
 import org.example.horoscopus.security.jwt.JwtUtils;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -22,12 +24,13 @@ public class DateService {
         this.jwtUtils = jwtUtils;
     }
 
-    public List<FreeDateDTO> getFreeDatesFromDatabase () {System.out.println("mizu");
-       return dateRepository.findAllByReservedFalse().stream().map((freeDateEntity -> new FreeDateDTO(freeDateEntity.getId(), freeDateEntity.getTimeInterval(), freeDateEntity.isReserved())))
-               .toList();
-  }
+    public List<FreeDateDTO> getFreeDatesFromDatabase() {
+        System.out.println("mizu");
+        return dateRepository.findAllByReservedFalse().stream().map((freeDateEntity -> new FreeDateDTO(freeDateEntity.getId(), freeDateEntity.getTimeInterval(), freeDateEntity.isReserved())))
+                .toList();
+    }
 
-  public boolean reserveDate(String autHeader, Long dateId) {
+    public boolean reserveDate(String autHeader, Long dateId) {
         String token = autHeader.substring("Bearer ".length());
 
         try {
@@ -48,17 +51,23 @@ public class DateService {
             } else {
                 return false;
             }
-        }catch (Exception e) {
-            return  false;
+        } catch (Exception e) {
+            return false;
         }
 
-  }
-  public boolean saveNewDate (FreeDateDTO freeDateDTO) {
+    }
+
+    public boolean saveNewDate(FreeDateDTO freeDateDTO) {
         try {
             dateRepository.save(new FreeDateEntity(freeDateDTO.getInterval(), freeDateDTO.getReserved()));
             return true;
         } catch (Exception exception) {
             return false;
         }
-  }
+    }
+
+    public List<FreeDateDTO> getDatesByUserName (String username) {
+        return dateRepository.findAllByUserEntityUserName(username).stream()
+                .map((date) -> new FreeDateDTO(date.getId(),date.getTimeInterval(),date.isReserved())).toList();
+    }
 }
