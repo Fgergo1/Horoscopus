@@ -32,5 +32,14 @@ public class UserService {
         }
     }
 
+    public boolean checkName(String userName) {
+       return userRepository.existsByUserName(userName);
+    }
+
+    public boolean checkEmail(String email) {
+       return userRepository.existsByEmail(email);
+    }
+
+
 
 }
