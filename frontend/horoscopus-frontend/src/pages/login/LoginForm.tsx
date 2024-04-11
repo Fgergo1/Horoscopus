@@ -1,9 +1,9 @@
-import {LoginUser} from "../../types/types.ts";
+import {User} from "../../types/types.ts";
 import React from "react";
 import "./LoginForm.css"
 
 interface onSaveProp {
-    onSave : (user : LoginUser) => void
+    onSave : (user : User) => void
 }
 
 
@@ -14,8 +14,8 @@ function LoginForm ({onSave} :onSaveProp) {
         event.preventDefault()
 
         const data = new FormData(event.currentTarget)
-        const user : LoginUser = {
-            userName : String(data.get("userName")),
+        const user : User = {
+            username : String(data.get("userName")),
             password : String(data.get("password"))
         }
         onSave(user)

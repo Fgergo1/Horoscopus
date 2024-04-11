@@ -1,11 +1,11 @@
 import RegistrationForm from "./RegistrationForm.tsx";
-import {RegistrationUser} from "../../types/types.ts";
+import {User} from "../../types/types.ts";
 import {useNavigate} from "react-router-dom";
 import {Dispatch, SetStateAction} from "react";
 
 function RegistrationPage () {
 const navigate = useNavigate()
-   async function registerUser (user : RegistrationUser, errorState : Dispatch<SetStateAction<string | null>>) {
+   async function registerUser (user : User, errorState : Dispatch<SetStateAction<string | null>>) {
       const response = await fetch("api/user/register" , {
           method : "POST",
           headers : {
