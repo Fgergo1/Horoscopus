@@ -15,7 +15,7 @@ function LoginForm ({onSave} :onSaveProp) {
 
         const data = new FormData(event.currentTarget)
         const user : User = {
-            username : String(data.get("userName")),
+            userName : String(data.get("userName")),
             password : String(data.get("password"))
         }
         onSave(user)
