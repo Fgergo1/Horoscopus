@@ -67,19 +67,19 @@ public class UserController {
         }
     }
 
-    @GetMapping("/check")
+    @GetMapping("/name")
     public ResponseEntity<?> checkUserNameIsFree(@RequestParam String name) {
 
-        if (userService.checkName(name)) {
+        if (!userService.checkName(name)) {
             return  ResponseEntity.ok().build();
         }
         return ResponseEntity.status(HttpStatus.CONFLICT).build();
 
     }
 
-    @GetMapping("/check")
+    @GetMapping("/email")
     public ResponseEntity<?> checkEmailIsFree(@RequestParam String email) {
-        if (userService.checkEmail(email)) {
+        if (!userService.checkEmail(email)) {
             return  ResponseEntity.ok().build();
         }
         return ResponseEntity.status(HttpStatus.CONFLICT).build();

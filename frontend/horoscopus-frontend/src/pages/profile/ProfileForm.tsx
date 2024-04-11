@@ -7,8 +7,7 @@ function ProfileForm () {
 
 
     async function checkNameIsFree (userName : string) {
-
-        const response = await fetch(`/api/user/check?name=${userName}`)
+        const response = await fetch(`/api/user/name?name=${userName}`)
 
        if (response.status === 200) {
            setNameIsAvailable(true)
@@ -19,7 +18,7 @@ function ProfileForm () {
 
     async function checkEmailIsFree (email : string) {
 
-        const response = await fetch(`/api/user/check?name=${email}`)
+        const response = await fetch(`/api/user/email?email=${email}`)
 
         if (response.status === 200) {
             setEmailIsAvailable(true)

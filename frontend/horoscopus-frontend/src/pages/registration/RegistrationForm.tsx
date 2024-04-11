@@ -37,13 +37,13 @@ function RegistrationForm ({onSave} : RegisterProp) {
 
 
         const user : User = {
-            username : String(data.get("username")),
+            userName : String(data.get("username")),
             password : String(data.get("password")),
             rePassword : String(data.get("re-pass")),
             email : String(data.get("email"))
         }
 
-        if (validatePassword((user.password!.toString())) && validateUsername(user.username.toString())) {
+        if (validatePassword((user.password!.toString())) && validateUsername(user.userName.toString())) {
             onSave(user, setError)
         }
     }

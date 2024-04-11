@@ -1,13 +1,13 @@
 .name-check {
     color : red;
 }
-.name-check .active {
+.name-check.active {
     color : green;
 }
 
 .email-check {
     color : red;
 }
-.email-check .active {
+.email-check.active {
     color : green;
 }
