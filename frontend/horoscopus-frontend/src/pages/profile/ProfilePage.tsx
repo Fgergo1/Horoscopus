@@ -10,17 +10,15 @@ interface  ProfilePageProps {
     userDetails : User | null
 }
 function ProfilePage ({reservedDates ,email, name, checkEmail, checkName, userDetails} : ProfilePageProps) {
-
-
     return (
         <>
             <div>
                 <p>Reserved dates:</p>
-                    {reservedDates?.map((date) =>
-                        <p>{date.interval}</p>
-                    )}
+                {reservedDates?.map((date) =>
+                    <p key={date.interval}>{date.interval}</p>
+                )}
             </div>
-            <form>
+            {userDetails  && (<form>
                 <input onChange={(e) => checkName(e.target.value!)} type="text" name="user-name"
                        defaultValue={userDetails!.userName}/>
                 {name ? <p className="name-check active">Available</p>
@@ -32,7 +30,7 @@ function ProfilePage ({reservedDates ,email, name, checkEmail, checkName, userDe
                     : <p className="email-check">Already used</p>
                 }
                 <button type="submit">Update</button>
-            </form>
+            </form>)}
         </>
 
     )

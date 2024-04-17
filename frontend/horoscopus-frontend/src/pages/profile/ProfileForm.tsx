@@ -30,8 +30,14 @@ function ProfileForm () {
         }
     }
     async function getReservedDatesByUsername() {
-        const username  = sessionStorage.getItem("user-name")
-        const response = await fetch(`/api/date/reserved?name=${username}`)
+        const token = localStorage.getItem("jwt-token")
+        const response = await fetch(`/api/date/reserved`, {
+            method : "GET",
+            headers : {
+                "Authorization" : "Bearer " + token,
+                "content-type" : "application/json"
+            }
+        })
         const dates = await response.json()
         if (response.status === 200) {
             setUserReservedDates(dates)
@@ -50,7 +56,6 @@ function ProfileForm () {
     }
 
     async function checkEmailIsFree (email : string) {
-
         const response = await fetch(`/api/user/email?email=${email}`)
 
         if (response.status === 200) {
