@@ -14,6 +14,6 @@ public interface DateRepository extends JpaRepository<FreeDateEntity,Long> {
 
     void deleteById(Long id);
 
-    List<FreeDateEntity> findAllByUserEntityUserName(String name);
+    List<FreeDateEntity> findFreeDateEntitiesByUserEntityUserName(String name);
 
 }
