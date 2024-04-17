@@ -21,6 +21,7 @@ public class DateController {
     @GetMapping("/free")
     public ResponseEntity<?> getFreeDates() {
         List<FreeDateDTO> dates = dateService.getFreeDatesFromDatabase();
+        System.out.println(dates.size());
 
         if (dates.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
