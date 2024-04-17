@@ -47,8 +47,8 @@ public class UserService {
     }
 
     public RegisterUserDTO getEmailAndName(String authHeader) {
-        String token = authHeader.substring("Bearer ".length());
-        UserEntity user = userRepository.findByUserName(jwtUtils.getUsernameFromToken(token)).orElseThrow();
+
+        UserEntity user = userRepository.findByUserName(jwtUtils.getUsernameFromToken(authHeader)).orElseThrow();
 
         return new RegisterUserDTO(user.getUserName(),null,user.getEmail());
 

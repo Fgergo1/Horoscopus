@@ -47,8 +47,9 @@ public class DateController {
     }
 
     @GetMapping("/reserved")
-    public ResponseEntity<?> getReservedDatesByName(@RequestParam String name) {
-        List<FreeDateDTO> reservedDates = dateService.getDatesByUserName(name);
+    public ResponseEntity<?> getReservedDatesByName(@RequestHeader(name = "Authorization") String authHeader) {
+      String token = authHeader.substring("Bearer ".length());
+        List<FreeDateDTO> reservedDates = dateService.getDatesByUserName(token);
         if (!reservedDates.isEmpty()) {
             return ResponseEntity.ok(reservedDates);
         } else {

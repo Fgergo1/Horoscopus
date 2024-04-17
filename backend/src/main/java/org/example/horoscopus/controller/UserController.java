@@ -87,8 +87,8 @@ public class UserController {
 
     @GetMapping("/data")
     public ResponseEntity<?> getUserEmailAndName (@RequestHeader(name = "Authorization") String authToken) {
-
-       RegisterUserDTO userDTO = userService.getEmailAndName(authToken);
+        String token = authToken.substring("Bearer ".length());
+       RegisterUserDTO userDTO = userService.getEmailAndName(token);
 
        return ResponseEntity.ok(userDTO);
     }

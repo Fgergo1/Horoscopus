@@ -66,8 +66,9 @@ public class DateService {
         }
     }
 
-    public List<FreeDateDTO> getDatesByUserName (String username) {
-        return dateRepository.findFreeDateEntitiesByUserEntityUserName(username).stream()
+    public List<FreeDateDTO> getDatesByUserName (String token) {
+        UserEntity user = userRepository.findByUserName(jwtUtils.getUsernameFromToken(token)).orElseThrow();
+        return dateRepository.findFreeDateEntitiesByUserEntityUserName(user.getUserName()).stream()
                 .map((date) -> new FreeDateDTO(date.getId(),date.getTimeInterval(),date.isReserved())).toList();
     }
 }
