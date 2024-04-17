@@ -1,5 +1,5 @@
 import {ReserveDate} from "../../types/types.ts";
-import React from "react";
+import React, {useState} from "react";
 import DateCard from "../date-reserve/DateCard.tsx";
 
 interface saveDateProp {
@@ -7,11 +7,15 @@ interface saveDateProp {
     access: boolean
     date : ReserveDate[]
     error : string | null
+    deleteDate : (id : number) => void
+
 }
 
 const AdminForm = (props: saveDateProp) => {
+    const [activeId, setActiveId] = useState<number>()
 
-    const {saveDate, access, date,error} = props
+
+    const {saveDate, access, date,error, deleteDate} = props
 
 
     function handleSaveDate(event: React.FormEvent<HTMLFormElement>) {
@@ -36,7 +40,11 @@ const AdminForm = (props: saveDateProp) => {
                         <input type="text" name="date"></input>
                         <button type="submit">Save new date</button>
                     </form>
-                    {error ? <p>Something goes wrong"</p> : <DateCard dates={date} />}
+                    <form onSubmit={() => deleteDate(activeId!)}>
+                        {error ? <p>Something goes wrong"</p> : <DateCard  dates={date} setId={setActiveId}/>}
+                        <button type="submit">Delete date</button>
+                    </form>
+
                 </div>
             </> :
             <>
