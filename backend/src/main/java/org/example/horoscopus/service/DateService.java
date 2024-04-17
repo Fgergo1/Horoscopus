@@ -25,7 +25,6 @@ public class DateService {
     }
 
     public List<FreeDateDTO> getFreeDatesFromDatabase() {
-        System.out.println("mizu");
         return dateRepository.findAllByReservedFalse().stream().map((freeDateEntity -> new FreeDateDTO(freeDateEntity.getId(), freeDateEntity.getTimeInterval(), freeDateEntity.isReserved())))
                 .toList();
     }

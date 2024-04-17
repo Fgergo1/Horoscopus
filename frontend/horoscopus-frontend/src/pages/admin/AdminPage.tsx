@@ -32,7 +32,7 @@ function AdminPage() {
         const data = await response.json()
 
         if (response.status === 200) {
-            setFreeDates(data.dates)
+            setFreeDates(data)
         } else if (response.status === 500) {
             setError("Something goes wrong! Please try it later!")
         }
@@ -56,11 +56,23 @@ function AdminPage() {
         }
     }
 
+    async function deleteDate(id : number) {
+        const response = await fetch(`/api/date/delete?${id}`, {
+            method : "DELETE"
+        })
+        if(response.status === 200) {
+            setFreeDates(freeDates.filter(date => date.id !== id))
+            console.log("deleted successfully")
+        } else {
+            console.log("handle it!")
+        }
+    }
+
 
     return (
         <>
             <Navbar/>
-            <AdminForm saveDate={addNewFreeDate} date={freeDates} access={available} error={error}/>
+            <AdminForm deleteDate={deleteDate} saveDate={addNewFreeDate} date={freeDates} access={available} error={error}/>
         </>
     )
 }
