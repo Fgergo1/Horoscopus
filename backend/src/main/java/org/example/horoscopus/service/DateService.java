@@ -70,4 +70,8 @@ public class DateService {
         return dateRepository.findFreeDateEntitiesByUserEntityUserName(user.getUserName()).stream()
                 .map((date) -> new FreeDateDTO(date.getId(),date.getTimeInterval(),date.isReserved())).toList();
     }
+
+    public void deleteDateById (long id) {
+       dateRepository.deleteById(id);
+    }
 }
