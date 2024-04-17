@@ -18,8 +18,6 @@ function LoginPage() {
         if (response.ok && authorizationHeader !== null) {
             localStorage.setItem("jwt-token", authorizationHeader)
             localStorage.setItem("role", data.roles[0])
-            sessionStorage.setItem("user-name", String(user.userName))
-            sessionStorage.setItem("user-email", String(user.email))
             navigate("/home")
         } else {
             console.log("Unauthorized!")
