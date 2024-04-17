@@ -1,18 +1,18 @@
 package org.example.horoscopus.DTO;
 
 public class RegisterUserDTO {
-    private String username;
+    private String userName;
     private String password;
     private String email;
 
     public RegisterUserDTO(String username, String password, String email) {
-        this.username = username;
+        this.userName = username;
         this.password = password;
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
     public String getPassword() {
