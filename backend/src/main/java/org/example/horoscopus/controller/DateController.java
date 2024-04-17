@@ -58,4 +58,9 @@ public class DateController {
         }
     }
 
+    @DeleteMapping("/delete")
+    public void deleteDate (@RequestParam long id) {
+        dateService.deleteDateById(id);
+    }
+
 }
