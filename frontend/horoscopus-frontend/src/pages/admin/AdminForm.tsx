@@ -30,6 +30,11 @@ const AdminForm = (props: saveDateProp) => {
         saveDate(date)
     }
 
+    function handleDeleteDate(event : React.FormEvent<HTMLFormElement>) {
+        event!.preventDefault()
+        deleteDate(activeId!)
+    }
+
 
     return (
         access ? <>
@@ -40,7 +45,7 @@ const AdminForm = (props: saveDateProp) => {
                         <input type="text" name="date"></input>
                         <button type="submit">Save new date</button>
                     </form>
-                    <form onSubmit={() => deleteDate(activeId!)}>
+                    <form onSubmit={handleDeleteDate}>
                         {error ? <p>Something goes wrong"</p> : <DateCard  dates={date} setId={setActiveId}/>}
                         <button type="submit">Delete date</button>
                     </form>
