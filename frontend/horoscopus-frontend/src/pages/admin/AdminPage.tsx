@@ -54,10 +54,11 @@ function AdminPage() {
         if (response.status === 400) {
             console.log("need to handle this error")
         }
+        getFreeDates()
     }
 
     async function deleteDate(id : number) {
-        const response = await fetch(`/api/date/delete?${id}`, {
+        const response = await fetch(`/api/date/delete?id=${id}`, {
             method : "DELETE"
         })
         if(response.status === 200) {
