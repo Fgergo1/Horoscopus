@@ -85,4 +85,12 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CONFLICT).build();
     }
 
+    @GetMapping("/data")
+    public ResponseEntity<?> getUserEmailAndName (@RequestHeader(name = "Authorization") String authToken) {
+
+       RegisterUserDTO userDTO = userService.getEmailAndName(authToken);
+
+       return ResponseEntity.ok(userDTO);
+    }
+
 }
