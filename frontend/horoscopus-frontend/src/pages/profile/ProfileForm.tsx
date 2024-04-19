@@ -1,8 +1,12 @@
 import {useEffect, useState} from "react";
 import ProfilePage from "./ProfilePage.tsx";
 import {ReserveDate, User} from "../../types/types.ts";
+import {useNavigate} from "react-router-dom";
 
 function ProfileForm () {
+
+    const navigate = useNavigate()
+    const role = localStorage.getItem("role")
     const [emailIsAvailable, setEmailIsAvailable] = useState<boolean>()
     const [nameIsAvailable, setNameIsAvailable] = useState<boolean>()
     const [userReservedDates, setUserReservedDates] = useState<ReserveDate[]>()
@@ -10,6 +14,9 @@ function ProfileForm () {
 
 
     useEffect(() => {
+        if (role === null) {
+            navigate("/login")
+        }
         getReservedDatesByUsername()
         getUsernameAndEmail()
     }, []);
@@ -67,8 +74,8 @@ function ProfileForm () {
 
 
 
+    return  (
 
-    return (
         <>
             <ProfilePage reservedDates={userReservedDates} checkEmail={checkEmailIsFree} checkName={checkNameIsFree} name={nameIsAvailable}
                          userDetails={user}
