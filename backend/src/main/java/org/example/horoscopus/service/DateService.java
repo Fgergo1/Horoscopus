@@ -1,5 +1,7 @@
 package org.example.horoscopus.service;
 
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.PersistenceException;
 import org.example.horoscopus.DTO.FreeDateDTO;
 import org.example.horoscopus.model.FreeDateEntity;
 import org.example.horoscopus.model.UserEntity;
@@ -7,6 +9,7 @@ import org.example.horoscopus.repository.DateRepository;
 import org.example.horoscopus.repository.UserRepository;
 import org.example.horoscopus.security.jwt.JwtUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,49 +32,64 @@ public class DateService {
                 .toList();
     }
 
-    public boolean reserveDate(String autHeader, Long dateId) {
-        String token = autHeader.substring("Bearer ".length());
+    @Transactional
+    public boolean reserveDate(String authHeader, Long dateId) {
+        if (authHeader == null || authHeader.isEmpty()) {
+            throw new IllegalArgumentException("User name cannot be empty or null");
+        } else if (dateId == null) {
+            throw new IllegalArgumentException("The date ID is wrong!");
+        }
 
-        try {
-            Optional<UserEntity> user = userRepository.findByUserName(jwtUtils.getUsernameFromToken(token));
-            Optional<FreeDateEntity> freeDate = dateRepository.findById(dateId);
+        String token = authHeader.substring("Bearer ".length());
 
-            if (user.isPresent() && freeDate.isPresent()) {
-                UserEntity userEntity = user.get();
-                FreeDateEntity date = freeDate.get();
 
-                userEntity.addNewDate(date);
-                date.setReserved(true);
+            UserEntity user = userRepository.findByUserName(jwtUtils.getUsernameFromToken(token))
+                    .orElseThrow(() -> new EntityNotFoundException("User is not found!"));
+            FreeDateEntity freeDate = dateRepository.findById(dateId)
+                    .orElseThrow(() -> new EntityNotFoundException("Date is not found!"));
 
-                userRepository.save(userEntity);
-                dateRepository.save(date);
+            try {
+                user.addNewDate(freeDate);
+                freeDate.setReserved(true);
+
+                userRepository.save(user);
+                dateRepository.save(freeDate);
 
                 return true;
-            } else {
-                return false;
+            } catch (PersistenceException ex){
+                throw  new PersistenceException("User or date already exist in database!");
             }
-        } catch (Exception e) {
-            return false;
-        }
 
     }
 
     public boolean saveNewDate(FreeDateDTO freeDateDTO) {
+        if (freeDateDTO == null || freeDateDTO.getInterval() == null) {
+            throw  new IllegalArgumentException("The date interval cannot be null!");
+        }
         try {
             dateRepository.save(new FreeDateEntity(freeDateDTO.getInterval(), freeDateDTO.getReserved()));
             return true;
-        } catch (Exception exception) {
-            return false;
+        } catch (PersistenceException exception) {
+            throw new PersistenceException("Date" + freeDateDTO.getInterval() + "cannot be saved!");
         }
     }
 
-    public List<FreeDateDTO> getDatesByUserName (String token) {
-        UserEntity user = userRepository.findByUserName(jwtUtils.getUsernameFromToken(token)).orElseThrow();
+    public List<FreeDateDTO> getDatesByUserName (String authHeader) {
+
+        if (authHeader == null || authHeader.isEmpty()) {
+            throw new IllegalArgumentException("User name cannot be empty or null");
+        }
+
+        String token = authHeader.substring("Bearer ".length());
+
+        UserEntity user = userRepository.findByUserName(jwtUtils.getUsernameFromToken(token))
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
         return dateRepository.findFreeDateEntitiesByUserEntityUserName(user.getUserName()).stream()
                 .map((date) -> new FreeDateDTO(date.getId(),date.getTimeInterval(),date.isReserved())).toList();
     }
 
     public void deleteDateById (long id) {
-       dateRepository.deleteById(id);
+            dateRepository.deleteById(id);
     }
 }

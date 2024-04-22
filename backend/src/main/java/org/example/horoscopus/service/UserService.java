@@ -1,5 +1,6 @@
 package org.example.horoscopus.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceException;
 import org.example.horoscopus.DTO.RegisterUserDTO;
 import org.example.horoscopus.model.Role;
@@ -34,7 +35,7 @@ public class UserService {
             userRepository.save(userEntity);
             return true;
         } catch (PersistenceException e) {
-            return false;
+            throw new PersistenceException("User is already exist in the database!");
         }
     }
 
@@ -47,8 +48,14 @@ public class UserService {
     }
 
     public RegisterUserDTO getEmailAndName(String authHeader) {
+        if (authHeader == null || authHeader.isEmpty()) {
+            throw new IllegalArgumentException("User name cannot be empty or null");
+        }
 
-        UserEntity user = userRepository.findByUserName(jwtUtils.getUsernameFromToken(authHeader)).orElseThrow();
+        String token = authHeader.substring("Bearer ".length());
+
+        UserEntity user = userRepository.findByUserName(jwtUtils.getUsernameFromToken(token))
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
         return new RegisterUserDTO(user.getUserName(),null,user.getEmail());
 
