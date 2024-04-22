@@ -40,8 +40,20 @@ public class JwtUtils {
     }
 
     public String getUsernameFromToken (String token) {
-        return Jwts.parserBuilder().setSigningKey(key()).build().parseClaimsJws(token)
-                .getBody().getSubject();
+
+        try {
+            return Jwts.parserBuilder().setSigningKey(key()).build().parseClaimsJws(token)
+                    .getBody().getSubject();
+        } catch (MalformedJwtException e) {
+            throw  new MalformedJwtException("Invalid JWT token");
+        } catch (ExpiredJwtException e) {
+            logger.error("JWT token is expired: {}", e.getMessage());
+        } catch (UnsupportedJwtException e) {
+           throw new UnsupportedJwtException("JWT token is unsupported");
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("JWT claims string is empty");
+        }
+        return null;
     }
 
     public boolean validateJwtToken (String authToken) {
