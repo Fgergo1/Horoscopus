@@ -21,7 +21,6 @@ public class DateController {
     @GetMapping("/free")
     public ResponseEntity<?> getFreeDates() {
         List<FreeDateDTO> dates = dateService.getFreeDatesFromDatabase();
-        System.out.println(dates.size());
 
         if (dates.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -39,8 +38,8 @@ public class DateController {
     }
 
     @PostMapping("/reserve")
-    public ResponseEntity<?> deleteDate (@RequestHeader(name = "Authorization") String authHeader,@RequestBody Long date) {
-        if (dateService.reserveDate(authHeader,date)) {
+    public ResponseEntity<?> reserveDate (@RequestHeader(name = "Authorization") String authHeader,@RequestBody Long dateId) {
+        if (dateService.reserveDate(authHeader,dateId)) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -49,8 +48,7 @@ public class DateController {
 
     @GetMapping("/reserved")
     public ResponseEntity<?> getReservedDatesByName(@RequestHeader(name = "Authorization") String authHeader) {
-      String token = authHeader.substring("Bearer ".length());
-        List<FreeDateDTO> reservedDates = dateService.getDatesByUserName(token);
+        List<FreeDateDTO> reservedDates = dateService.getDatesByUserName(authHeader);
         if (!reservedDates.isEmpty()) {
             return ResponseEntity.ok(reservedDates);
         } else {
