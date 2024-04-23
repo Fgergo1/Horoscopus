@@ -63,7 +63,7 @@ public class UserController {
                     .header(HttpHeaders.AUTHORIZATION, jwt)
                     .body(new JwtResponse(jwt, loginUserDTO.getUserName(), roles));
         } catch (Exception e) {
-            return ResponseEntity.ok("This is from the catch: " + e.getMessage());
+            return ResponseEntity.badRequest().body("This is from the catch: " + e.getMessage());
         }
     }
 

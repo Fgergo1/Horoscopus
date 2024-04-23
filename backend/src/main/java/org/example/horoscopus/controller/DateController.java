@@ -57,8 +57,11 @@ public class DateController {
     }
 
     @DeleteMapping("/delete")
-    public void deleteDate (@RequestParam long id) {
-        dateService.deleteDateById(id);
+    public ResponseEntity<?> deleteDate (@RequestParam long id) {
+        if (dateService.deleteDateById(id)) {
+            return ResponseEntity.ok().build();
+        }
+        return  ResponseEntity.badRequest().build();
     }
 
 }

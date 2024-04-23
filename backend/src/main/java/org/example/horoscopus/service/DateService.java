@@ -89,7 +89,12 @@ public class DateService {
                 .map((date) -> new FreeDateDTO(date.getId(),date.getTimeInterval(),date.isReserved())).toList();
     }
 
-    public void deleteDateById (long id) {
+    public boolean deleteDateById (long id) {
+
+        if (dateRepository.findById(id).isPresent()) {
             dateRepository.deleteById(id);
+            return true;
+        }
+           return false;
     }
 }
