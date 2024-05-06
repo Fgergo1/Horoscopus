@@ -51,33 +51,36 @@ function RegistrationForm ({onSave} : RegisterProp) {
 
 
     return (
-        <div className="wrapper" data-testid="wrapper">
-            <h2>Registration</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="input-box">
-                    <input name="username" type="text" placeholder="Enter your name"  required/>
-                </div>
-                <div className="input-box">
-                    <input name="email" type="email" placeholder="Enter your email" required/>
-                </div>
-                <div className="input-box">
-                    <input name="password" type="password" placeholder="Create password" required/>
-                </div>
-                <div className="input-box">
-                    <input name="re-pass" type="password" placeholder="Confirm password" required/>
-                </div>
-                {error && <p className="error-message">{error}</p>}
-                <div className="policy" data-testid="policy">
-                    <input type="checkbox"/>
-                        <h3>I accept all terms & condition</h3>
-                </div>
-                <div className="input-box button" data-testid="submit-div">
-                    <input type="Submit" value="Register Now"/>
-                </div>
-                <div className="text" data-testid="text">
-                    <h3>Already have an account?<a href="/login">Login now</a></h3>
-                </div>
-            </form>
+        <div className="registration-page">
+            <div className="registration-wrapper" data-testid="wrapper">
+                <h2 className="registration-header">Registration</h2>
+                <form className="registration-form" onSubmit={handleSubmit}>
+                    <div className="input-box">
+                        <label className="input-label">Username</label>
+                        <input name="username" type="text"  required/>
+                    </div>
+                    <div className="input-box">
+                        <label className="input-label">Email</label>
+                        <input name="email" type="email"  required/>
+                    </div>
+                    <div className="input-box">
+                        <label className="input-label">Password</label>
+                        <input name="password" type="password"  required/>
+                    </div>
+                    <div className="input-box">
+                        <label className="input-label">Confirm password</label>
+                        <input name="re-pass" type="password"  required/>
+                    </div>
+                    {error && <p className="error-message">{error}</p>}
+
+                    <div className="registration-button-container" data-testid="submit-div">
+                        <button className="registration-button" type="submit" value="Register Now">Register</button>
+                    </div>
+                    <div className="text" data-testid="text">
+                        <h3 className="account-header">Already have an account?<a className="registration-link" href="/login">Login now</a></h3>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

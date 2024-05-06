@@ -1,7 +1,6 @@
 import DateReservePage from "./DateReservePage.tsx";
 import {useEffect, useState} from "react";
 import {ReserveDate} from "../../types/types.ts";
-import Navbar from "../../components/navbar/Navbar.tsx";
 
 function DateReserveForm() {
 
@@ -55,7 +54,6 @@ function DateReserveForm() {
 
     return (
         <>
-            <Navbar/>
             <DateReservePage dates={freeDates} onReserve={reserveDateById} error={error}/>
         </>
     )

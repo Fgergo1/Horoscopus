@@ -1,40 +1,69 @@
-import Navbar from "../../components/navbar/Navbar.tsx";
-import "./Homepage.css"
+    import Navbar from "../../components/navbar/Navbar.tsx";
+    import "./Homepage.css"
+    import Footer from "../../components/footer/Footer.tsx";
 
-function HomePage() {
+    function HomePage() {
 
-    return (
-        <>
+        return (
+            <div className="home-page">
             <Navbar/>
-            <h2 className="welcome-text">Duis dapibus nunc nisl, non venenatis dolor lobortis at.</h2>
-            <div className="frontend-container">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pharetra gravida ex sit amet
-                    vestibulum. Curabitur in magna ac lorem rhoncus fermentum. Praesent libero augue, gravida lacinia
-                    enim nec, convallis pretium nunc. Sed ultricies tortor quis tortor scelerisque bibendum. Nulla
-                    pretium a ex quis fringilla. Quisque iaculis nec diam quis gravida. Nulla condimentum turpis risus.
-                    Duis pellentesque suscipit lorem a pellentesque. Aliquam tincidunt consectetur mauris, non facilisis
-                    augue tincidunt non. Suspendisse potenti. Vivamus dapibus commodo vulputate.
+                <section className="main-section">
+                    <p className="welcome-text">Welcome to Horoscopus!</p>
+                    <div className="information-container">
+                        <div className="about-container">
+                            <div className="container-title">
+                                <h3 className="inner-title">What is this place?</h3>
+                            </div>
 
-                    Vestibulum placerat mauris eu justo vehicula consequat non sit amet massa. Pellentesque nisi lorem,
-                    dictum eget nulla vel, interdum consectetur erat. Sed vehicula sed sapien non laoreet. Proin quis
-                    libero in ante viverra facilisis at id justo. Sed suscipit nibh vel est dictum imperdiet. Integer
-                    eleifend vehicula consectetur. Nullam semper fermentum enim, in mollis neque lacinia nec. Donec eget
-                    gravida lorem, eu rhoncus ex. Mauris nec quam purus. Nulla non erat vitae dui interdum suscipit sit
-                    amet at lacus. Cras posuere vehicula eleifend. Morbi rutrum tempor orci, ultrices mattis nunc
-                    sagittis laoreet. Nam non justo sodales arcu maximus aliquam.
+                            <p className="box-paragraph">
+                                Embark on a celestial journey with us as we delve into the captivating world of
+                                astrology.
+                                Whether you're a seasoned stargazer or a curious newcomer, our mission is to illuminate
+                                the
+                                pathways of the cosmos and unlock the secrets that lie within.
 
-                    Ut aliquam lacus quis iaculis tempus. Orci varius natoque penatibus et magnis dis parturient montes,
-                    nascetur ridiculus mus. Aliquam sapien augue, scelerisque sed bibendum sit amet, maximus id metus.
-                    Maecenas luctus quis lacus eu viverra. Aliquam ornare lorem neque, at cursus mauris rhoncus vitae.
-                    Proin sit amet purus ante. Sed vel libero sem. Mauris euismod ligula at felis vehicula, sed sodales
-                    magna sollicitudin. Donec vel tincidunt dolor, vitae vulputate metus. Donec commodo sed est in
-                    feugiat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                    Aenean dignissim cursus nibh, nec interdum nisi aliquam vel.
-                </p>
+                                At Horoscopus, we believe that the alignment of the planets holds profound insights into
+                                our
+                                lives,
+                                relationships, and destinies. Through the ancient wisdom of astrology, we seek to
+                                empower
+                                you
+                                with knowledge, understanding, and guidance to navigate the cosmic currents that shape
+                                our
+                                existence.
+                            </p>
+                        </div>
+                        <div className="choose-container">
+                            <div className="choose-inner-container">
+                                <div className="container-title">
+                                    <h3 className="inner-title">What we can offer?</h3>
+                                </div>
+                                <p className="box-paragraph">
+                                    Explore our comprehensive horoscope readings tailored to your zodiac sign,
+                                    and discover what the heavens have in store for you. From love and career to health
+                                    and
+                                    spirituality,
+                                    our astrological insights provide clarity and perspective in a world filled with
+                                    uncertainty.
+
+                                    But Horoscopus is more than just a repository of astrological wisdom; it's a
+                                    community of
+                                    like-minded
+                                    seekers united by a shared fascination with the cosmos. Join us as we unravel the
+                                    mysteries of the universe together, sharing stories, insights, and experiences along
+                                    the
+                                    way.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+                <Footer/>
             </div>
-        </>
-    )
-}
 
-export default HomePage
+        )
+    }
+
+    export default HomePage

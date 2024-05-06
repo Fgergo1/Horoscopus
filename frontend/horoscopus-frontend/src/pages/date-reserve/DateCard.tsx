@@ -1,6 +1,7 @@
 import {ReserveDate} from "../../types/types.ts";
 import {Dispatch, SetStateAction, useState} from "react";
 import "./DateCard.css"
+import "./DateReserve.css"
 
 
 interface DateWriteProp  {
@@ -12,8 +13,7 @@ function DateCard ({dates, setId} : DateWriteProp) {
     return (
         <>
             <div className="date-container">
-                <div className="wrap-date">
-                    <p>{"Free dates :"}</p>
+                    <p className="free-date-paragraph">Free dates :</p>
                     {dates.map((date: ReserveDate) => (
                         <>
                             <p
@@ -28,7 +28,6 @@ function DateCard ({dates, setId} : DateWriteProp) {
                         </>
                     ))}
                 </div>
-            </div>
         </>
     )
 }

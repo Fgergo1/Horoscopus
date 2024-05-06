@@ -14,6 +14,7 @@ function LoginForm ({onSave} :onSaveProp) {
         event.preventDefault()
 
         const data = new FormData(event.currentTarget)
+        console.log(data.get("password"))
         const user : User = {
             userName : String(data.get("userName")),
             password : String(data.get("password"))
@@ -22,36 +23,37 @@ function LoginForm ({onSave} :onSaveProp) {
     }
 
     return (
-        <div className="wrapper">
-            <div className="title">
-                Login Form
+        <div className="login-page">
+            <div className="login-wrapper">
+                <h2 className="title">
+                    Login Form
+                </h2>
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <div className="field">
+                        <label className="input-label">Username</label>
+                        <input className="login-input" name="userName" type="text" required/>
+
+                    </div>
+                    <div className="field">
+                        <label className="input-label">Password</label>
+                        <input className="login-input" name="password" type="password" required/>
+                    </div>
+                    <div className="pass-link-content">
+
+                        <div className="pass-link">
+                            <a className="link-text" href="#">Forgot password?</a>
+                        </div>
+                    </div>
+                    <div className="button-field">
+                        <input className="login-button" type="submit" value="Login"/>
+                    </div>
+                    <div className="signup-link">
+                        Not a member? <a className="link-text" href="#">Signup now</a>
+                    </div>
+                </form>
             </div>
-            <form onSubmit={handleSubmit}>
-                <div className="field">
-                    <input name="userName" type="text" required/>
-                        <label>Username</label>
-                </div>
-                <div className="field">
-                    <input name="password" type="password" required/>
-                        <label>Password</label>
-                </div>
-                <div className="content">
-                    <div className="checkbox">
-                        <input type="checkbox" id="remember-me"/>
-                            <label htmlFor="remember-me">Remember me</label>
-                    </div>
-                    <div className="pass-link">
-                        <a href="#">Forgot password?</a>
-                    </div>
-                </div>
-                <div className="field">
-                    <input type="submit" value="Login"/>
-                </div>
-                <div className="signup-link">
-                    Not a member? <a href="#">Signup now</a>
-                </div>
-            </form>
         </div>
+
     )
 }
 
