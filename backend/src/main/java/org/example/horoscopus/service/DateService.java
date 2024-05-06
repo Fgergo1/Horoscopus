@@ -43,28 +43,32 @@ public class DateService {
         String token = authHeader.substring("Bearer ".length());
 
 
-            UserEntity user = userRepository.findByUserName(jwtUtils.getUsernameFromToken(token))
-                    .orElseThrow(() -> new EntityNotFoundException("User is not found!"));
-            FreeDateEntity freeDate = dateRepository.findById(dateId)
-                    .orElseThrow(() -> new EntityNotFoundException("Date is not found!"));
-
-            try {
-                user.addNewDate(freeDate);
-                freeDate.setReserved(true);
-
-                userRepository.save(user);
-                dateRepository.save(freeDate);
-
-                return true;
-            } catch (PersistenceException ex){
-                throw  new PersistenceException("User or date already exist in database!");
+        try {
+            if (userRepository.findByUserName(jwtUtils.getUsernameFromToken(token)).isEmpty()) {
+                throw new EntityNotFoundException("User is not found!");
+            } else if (dateRepository.findById(dateId).isEmpty()) {
+                throw new EntityNotFoundException("Date is not found!");
             }
 
+            UserEntity user = userRepository.findByUserName(jwtUtils.getUsernameFromToken(token)).get();
+            FreeDateEntity freeDate = dateRepository.findById(dateId).get();
+
+
+            user.addNewDate(freeDate);
+            freeDate.setReserved(true);
+
+            userRepository.save(user);
+            dateRepository.save(freeDate);
+
+            return true;
+        } catch (PersistenceException ex) {
+            throw new PersistenceException("User or date already exist in database!");
+        }
     }
 
     public boolean saveNewDate(FreeDateDTO freeDateDTO) {
         if (freeDateDTO == null || freeDateDTO.getInterval() == null) {
-            throw  new IllegalArgumentException("The date interval cannot be null!");
+            throw new IllegalArgumentException("The date interval cannot be null!");
         }
         try {
             dateRepository.save(new FreeDateEntity(freeDateDTO.getInterval(), freeDateDTO.getReserved()));
@@ -74,7 +78,7 @@ public class DateService {
         }
     }
 
-    public List<FreeDateDTO> getDatesByUserName (String authHeader) {
+    public List<FreeDateDTO> getDatesByUserName(String authHeader) {
 
         if (authHeader == null || authHeader.isEmpty()) {
             throw new IllegalArgumentException("User name cannot be empty or null");
@@ -86,15 +90,15 @@ public class DateService {
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
         return dateRepository.findFreeDateEntitiesByUserEntityUserName(user.getUserName()).stream()
-                .map((date) -> new FreeDateDTO(date.getId(),date.getTimeInterval(),date.isReserved())).toList();
+                .map((date) -> new FreeDateDTO(date.getId(), date.getTimeInterval(), date.isReserved())).toList();
     }
 
-    public boolean deleteDateById (long id) {
+    public boolean deleteDateById(long id) {
 
         if (dateRepository.findById(id).isPresent()) {
             dateRepository.deleteById(id);
             return true;
         }
-           return false;
+        return false;
     }
 }
