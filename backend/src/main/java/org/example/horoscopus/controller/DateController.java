@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/date")
@@ -38,7 +39,7 @@ public class DateController {
     }
 
     @PostMapping("/reserve")
-    public ResponseEntity<?> reserveDate (@RequestHeader(name = "Authorization") String authHeader,@RequestBody Long dateId) {
+    public ResponseEntity<?> reserveDate (@RequestHeader(name = "Authorization") String authHeader,@RequestBody UUID dateId) {
         if (dateService.reserveDate(authHeader,dateId)) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
@@ -57,7 +58,7 @@ public class DateController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteDate (@RequestParam long id) {
+    public ResponseEntity<?> deleteDate (@RequestParam UUID id) {
         if (dateService.deleteDateById(id)) {
             return ResponseEntity.ok().build();
         }

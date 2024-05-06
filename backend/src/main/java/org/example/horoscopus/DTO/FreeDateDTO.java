@@ -1,8 +1,10 @@
 package org.example.horoscopus.DTO;
 
+import java.util.UUID;
+
 public class FreeDateDTO {
 
-    private Long id;
+    private UUID id;
 
     private String interval;
 
@@ -12,7 +14,7 @@ public class FreeDateDTO {
 
     }
 
-    public FreeDateDTO(Long id, String interval, boolean reserved) {
+    public FreeDateDTO(UUID id, String interval, boolean reserved) {
         this.id = id;
         this.interval = interval;
         this.reserved  = reserved;
@@ -29,7 +31,7 @@ public class FreeDateDTO {
 
 
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 

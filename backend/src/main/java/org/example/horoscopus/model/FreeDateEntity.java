@@ -2,12 +2,14 @@ package org.example.horoscopus.model;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 public class FreeDateEntity {
 
     @Id
-    @GeneratedValue
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @Column(unique = true)
     private String timeInterval;
@@ -32,11 +34,11 @@ public class FreeDateEntity {
         return timeInterval;
     }
 
-    public Long getId() {
-        return id;
+    public UUID getId() {
+        return id ;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
