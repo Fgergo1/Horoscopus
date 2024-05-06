@@ -1,0 +1,30 @@
+
+.page-wrapper {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 3.5rem auto 5rem;
+    grid-template-areas: "navbar"
+                         "main"
+                         "footer";
+}
+
+.main-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    grid-area: main;
+}
+
+.reserve-button {
+    border: 2px solid black;
+    background: var(--third);
+    margin-top: 20px;
+}
+
+.reserve-button:active,
+.reserve-button:hover {
+    color : var(--third);
+    background: var(--primary);
+    cursor: pointer;
+}

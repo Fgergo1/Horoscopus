@@ -1,12 +1,30 @@
+
+
+.date-container {
+    background: var(--third);
+    border: 2px solid var(--background);
+    min-height: 200px;
+    min-width: 350px;
+}
+
+
 .date-item {
     width: 300px;
     height: 30px;
     font-style: italic;
-    color: white;
+    color: var(--secondary);
+    text-align: center;
 }
+
+
+.free-date-paragraph {
+    font-size: 20px;
+    text-align: center;
+}
+.date-item:hover,
 .date-item.active {
-    background-color: white;
+
     font-style: italic;
-    color : black;
+    color : var(--background);
 
 }

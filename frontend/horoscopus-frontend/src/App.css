@@ -1,2 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
+:root {
+    --background: #153448;
+    --primary : #1B1A55;
+    --secondary : #535C91;
+    --third : #9290C3
+}
 
+*{
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html{
+    background: var(--background);
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin : 0;
+}
+
+#root {
+    height: 100%;
+}
+
+.App {
+    height: 100%;
+}
