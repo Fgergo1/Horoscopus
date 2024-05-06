@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class DateService {
@@ -33,7 +34,7 @@ public class DateService {
     }
 
     @Transactional
-    public boolean reserveDate(String authHeader, Long dateId) {
+    public boolean reserveDate(String authHeader, UUID dateId) {
         if (authHeader == null || authHeader.isEmpty()) {
             throw new IllegalArgumentException("User name cannot be empty or null");
         } else if (dateId == null) {
@@ -93,7 +94,7 @@ public class DateService {
                 .map((date) -> new FreeDateDTO(date.getId(), date.getTimeInterval(), date.isReserved())).toList();
     }
 
-    public boolean deleteDateById(long id) {
+    public boolean deleteDateById(UUID id) {
 
         if (dateRepository.findById(id).isPresent()) {
             dateRepository.deleteById(id);
