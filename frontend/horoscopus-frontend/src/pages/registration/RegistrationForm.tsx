@@ -1,6 +1,6 @@
 import {User} from "../../types/types.ts";
 import React, {Dispatch, SetStateAction, useState} from "react";
-import "./RegistrationForm.css"
+import "./RegistrationForm.scss"
 
 interface RegisterProp {
 onSave : (user : User, setError : Dispatch<SetStateAction<string | null>>) => Promise<void>

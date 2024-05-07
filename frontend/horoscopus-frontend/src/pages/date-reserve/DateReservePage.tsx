@@ -1,7 +1,7 @@
 import {ReserveDate} from "../../types/types.ts";
 import DateCard from "./DateCard.tsx";
 import {useState} from "react";
-import "./DateReserve.css"
+import "./DateReserve.scss"
 import Navbar from "../../components/navbar/Navbar.tsx";
 import Footer from "../../components/footer/Footer.tsx";
 import PopUp from "../../components/notification/PopUp.tsx";

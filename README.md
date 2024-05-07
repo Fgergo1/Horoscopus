@@ -36,8 +36,8 @@ personalized and insightful journey into the realms of astrology.
 
 **Prerequisites:**
 
-1. Install Java from [https://www.java.com/en/download/help/download_options.html](https://www.java.com/en/download/help/download_options.html)
-2. Install Git from: [https://git-scm.com/downloads](https://git-scm.com/downloads)
+1. Install Java from [Java Link](https://www.oracle.com/java/technologies/downloads/)
+2. Install Maven from [Maven Link](https://maven.apache.org/)
 
 **Usage:**
 

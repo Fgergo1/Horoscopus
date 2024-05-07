@@ -1,3 +1,6 @@
+@import "../../resources/style/Variables";
+
+
 .login-page {
     height: 100%;
     display: flex;
@@ -13,9 +16,9 @@
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
-    border: 2px solid #535C91;
+    border: 2px solid $secondary;
     padding: 30px;
-    background-color: #9290C3;
+    background-color: $third;
 }
 
 .login-form {
@@ -23,8 +26,8 @@
 }
 
 .title {
-    border-bottom: 2px solid #1B1A55;
-    color: #1B1A55;
+    border-bottom: 2px solid $primary;
+    color: $primary;
 }
 
 .field {
@@ -34,21 +37,21 @@
 .login-input {
     outline: 0;
     border: 0;
-    border-bottom: 2px solid #1B1A55;
+    border-bottom: 2px solid $primary;
     background: transparent;
     width: 300px;
-    color: #1B1A55;
+    color: $primary;
 }
 
 .input-label {
     font-size: 15px;
     display: block;
-    color: #1B1A55;
+    color: $primary;
 }
 
 .link-text {
     text-decoration: none;
-    color: #1B1A55;
+    color: $primary;
 }
 
 .link-text:active,
@@ -65,10 +68,10 @@
 .login-button {
     font-size: 20px;
     background: transparent;
-    border: 2px solid #1B1A55;
+    border: 2px solid $primary;
     border-radius: 10px;
     width: 150px;
-    color: #1B1A55;
+    color: $primary;
 }
 
 .login-button:active,
