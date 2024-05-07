@@ -10,12 +10,12 @@ function HoroscopePage() {
     return (
         <>
             <Navbar/>
-            <div className="card-container-wrapper"></div>
-            <div className="card-container">
+            <div className="card-container-wrapper">
                 {horoscopeArray.map((horos: Horoscope) =>
                     <HoroscopeCard horoscope={horos}/>
                 )}
             </div>
+
         </>
     )
 }
