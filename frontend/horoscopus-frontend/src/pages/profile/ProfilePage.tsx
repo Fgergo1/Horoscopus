@@ -1,5 +1,5 @@
 import {ReserveDate, User} from "../../types/types.ts";
-import "./ProfilePage.css"
+import "./ProfilePage.scss"
 
 interface  ProfilePageProps {
     reservedDates : ReserveDate[] | undefined,

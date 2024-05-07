@@ -1,4 +1,4 @@
-import "./Notification.css"
+import "./Notification.scss"
 
 interface notiInterface {
     message: string

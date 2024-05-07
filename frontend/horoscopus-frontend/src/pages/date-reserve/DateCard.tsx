@@ -1,7 +1,7 @@
 import {ReserveDate} from "../../types/types.ts";
 import {Dispatch, SetStateAction, useState} from "react";
-import "./DateCard.css"
-import "./DateReserve.css"
+import "./DateCard.scss"
+import "./DateReserve.scss"
 
 
 interface DateWriteProp  {

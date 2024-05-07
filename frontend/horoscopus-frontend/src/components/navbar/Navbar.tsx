@@ -1,4 +1,4 @@
-import "./Navbar.css"
+import "./Navbar.scss"
 import Button from "./Button.tsx";
 
 function Navbar() {

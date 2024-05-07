@@ -1,6 +1,6 @@
 import {User} from "../../types/types.ts";
 import React from "react";
-import "./LoginForm.css"
+import "./LoginForm.scss"
 
 interface onSaveProp {
     onSave : (user : User) => void

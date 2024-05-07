@@ -1,3 +1,5 @@
+@import "../../resources/style/Variables";
+
 .registration-page {
     display: flex;
     justify-content: center;
@@ -11,14 +13,14 @@
     align-items: center;
     flex-direction: column;
     padding: 25px;
-    border: 2px solid #535C91;
+    border: 2px solid $secondary;
     width: 400px;
     height: 500px;
-    background-color: #9290C3;
+    background-color: $third;
 }
 
 .registration-header {
-    border-bottom: 3px solid #1B1A55;
+    border-bottom: 3px solid $primary;
 }
 
 .registration-form {
@@ -28,10 +30,10 @@
 .input-box input {
     outline: 0;
     border: 0;
-    border-bottom: 2px solid #1B1A55;
+    border-bottom: 2px solid $primary;
     background: transparent;
     width: 300px;
-    color: #1B1A55;
+    color: $primary;
 }
 
 .registration-button-container {
@@ -43,10 +45,10 @@
 .registration-button {
     font-size: 20px;
     background: transparent;
-    border: 2px solid #1B1A55;
+    border: 2px solid $primary;
     border-radius: 10px;
     width: 150px;
-    color: #1B1A55;
+    color: $primary;
 }
 .registration-button:active,
 .registration-button:hover {
@@ -55,7 +57,7 @@
 
 .text {
     font-size: 15px;
-    color: #1B1A55;
+    color: $primary;
 }
 
 .registration-link {

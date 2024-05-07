@@ -1,5 +1,5 @@
     import Navbar from "../../components/navbar/Navbar.tsx";
-    import "./Homepage.css"
+    import "./Homepage.scss"
     import Footer from "../../components/footer/Footer.tsx";
 
     function HomePage() {

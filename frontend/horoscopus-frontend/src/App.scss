@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+@import "resources/style/Variables";
 
-:root {
-    --background: #153448;
-    --primary : #1B1A55;
-    --secondary : #535C91;
-    --third : #9290C3
-}
 
 *{
     box-sizing: border-box;
@@ -13,7 +8,7 @@
 }
 
 html{
-    background: var(--background);
+    background: $background;
     height: 100%;
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import './index.css'
+import './index.scss'
 import RegistrationPage from "./pages/registration/RegistrationPage.tsx";
 import LoginPage from "./pages/login/LoginPage.tsx";
 import HomePage from "./pages/home/HomePage.tsx";
