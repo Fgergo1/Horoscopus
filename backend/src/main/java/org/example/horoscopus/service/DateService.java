@@ -45,15 +45,11 @@ public class DateService {
 
 
         try {
-            if (userRepository.findByUserName(jwtUtils.getUsernameFromToken(token)).isEmpty()) {
-                throw new EntityNotFoundException("User is not found!");
-            } else if (dateRepository.findById(dateId).isEmpty()) {
-                throw new EntityNotFoundException("Date is not found!");
-            }
+            UserEntity user = userRepository.findByUserName(jwtUtils.getUsernameFromToken(token))
+                    .orElseThrow(() -> new EntityNotFoundException("User is not found!"));
 
-            UserEntity user = userRepository.findByUserName(jwtUtils.getUsernameFromToken(token)).get();
-            FreeDateEntity freeDate = dateRepository.findById(dateId).get();
-
+            FreeDateEntity freeDate = dateRepository.findById(dateId)
+                    .orElseThrow(() -> new EntityNotFoundException("Date is not found!"));
 
             user.addNewDate(freeDate);
             freeDate.setReserved(true);
@@ -62,7 +58,10 @@ public class DateService {
             dateRepository.save(freeDate);
 
             return true;
-        } catch (PersistenceException ex) {
+        } catch (EntityNotFoundException ex) {
+            throw new EntityNotFoundException(ex.getMessage());
+        }
+        catch (PersistenceException ex) {
             throw new PersistenceException("User or date already exist in database!");
         }
     }
