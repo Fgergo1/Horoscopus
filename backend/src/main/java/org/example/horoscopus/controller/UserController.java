@@ -37,11 +37,9 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> saveUser(@RequestBody RegisterUserDTO registerUserDTO) {
 
-        if (userService.saveNewUser(registerUserDTO)) {
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        userService.saveNewUser(registerUserDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+
 
     }
 
@@ -71,7 +69,7 @@ public class UserController {
     public ResponseEntity<?> checkUserNameIsFree(@RequestParam String name) {
 
         if (!userService.checkName(name)) {
-            return  ResponseEntity.ok().build();
+            return ResponseEntity.ok().build();
         }
         return ResponseEntity.status(HttpStatus.CONFLICT).build();
 
@@ -80,17 +78,17 @@ public class UserController {
     @GetMapping("/email")
     public ResponseEntity<?> checkEmailIsFree(@RequestParam String email) {
         if (!userService.checkEmail(email)) {
-            return  ResponseEntity.ok().build();
+            return ResponseEntity.ok().build();
         }
         return ResponseEntity.status(HttpStatus.CONFLICT).build();
     }
 
     @GetMapping("/data")
-    public ResponseEntity<?> getUserEmailAndName (@RequestHeader(name = "Authorization") String authToken) {
+    public ResponseEntity<?> getUserEmailAndName(@RequestHeader(name = "Authorization") String authToken) {
 
-       RegisterUserDTO userDTO = userService.getEmailAndName(authToken);
+        RegisterUserDTO userDTO = userService.getEmailAndName(authToken);
 
-       return ResponseEntity.ok(userDTO);
+        return ResponseEntity.ok(userDTO);
     }
 
 }
