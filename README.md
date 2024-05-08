@@ -38,27 +38,35 @@ personalized and insightful journey into the realms of astrology.
 
 1. Install Java from [Java Link](https://www.oracle.com/java/technologies/downloads/)
 2. Install Maven from [Maven Link](https://maven.apache.org/)
+3. Install Postgres from [PSQL Link](https://www.postgresql.org/download/windows/)
 
 **Usage:**
 
-### Important!
-This project is currently underway, and as it stands, it can only be initiated within an IDE.
-
 To set up the Application locally, follow these simple steps:
 
-1. Clone the repository from Github
-   ```sh
-   git clone git@github.com:Fgergo1/Horoscopus.git
-   ```
-2. Clone it in an IDE what you prefer.
+*Database Setup*:
+1. Create a PostgreSQL database using pgAdmin or any other tool of your choice.
+Navigate to `backend/src/main/resources/application.properties`.
+Update the values of `spring.datasource.username`, `spring.datasource.password`, and `spring.datasource.url` to match your PostgreSQL database credentials and connection URL.
 
-3. Navigate to frontend/horoscopus-frontend with a terminal or command prompt and run the following command :
-```sh
-npm run dev
-   ```
-and press enter.
+2. Frontend Setup:
+   Open a terminal and navigate to the root of the project.
+   Go to `/frontend/horoscopus-frontend`.
+   Run npm install to install the required frontend dependencies.
 
-4. You can access the page at port 3000.
+3. Backend Setup:
+   Navigate to `/backend` in the terminal.
+   Run mvn clean install to build the backend project.
+
+4. Start Backend:
+   After building, start the backend server by running mvn `spring-boot:run` in the `/backend` folder.
+
+5. Start Frontend:
+   In another terminal window/tab, navigate to `/frontend/horoscopus-frontend`.
+   Start the frontend development server with `npm run dev`.
+
+6. Accessing the Application:
+   Once both backend and frontend servers are running, access the application by visiting `localhost:5173` in your web browser.
 
 ### Contact
 
