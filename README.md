@@ -5,7 +5,6 @@ From daily horoscopes to fascinating articles, we've got you covered.
 Plus, with personalized consultation services available,
 you can delve deeper into your astrological journey like never before.
 
-
 ### Why Use This App?
 
 -If you're seeking either general insights or a deeper exploration into your horoscope, the Horoscopus
@@ -14,7 +13,7 @@ whether it's understanding your horoscope, exploring specific houses, or delving
 It's a comprehensive offering tailored to those who seek a more
 personalized and insightful journey into the realms of astrology.
 
-### Technologies 
+### Technologies
 
 **Backend** : [![Backend](https://skillicons.dev/icons?i=java,spring,hibernate&theme=dark)](https://skillicons.dev)
 
@@ -24,13 +23,11 @@ personalized and insightful journey into the realms of astrology.
 
 **Others** : [![Other](https://skillicons.dev/icons?i=git&theme=dark)](https://skillicons.dev)
 
-
 ### Features
 
 - **Explore Common Themes:** Uncover the common threads of astrology and horoscopes effortlessly.
 - **Book Private Consultation:** Uncertain about something? Secure a private consultation with an
-    experienced mentor for clarity and guidance.
-
+  experienced mentor for clarity and guidance.
 
 ### Getting Started
 
@@ -45,33 +42,35 @@ personalized and insightful journey into the realms of astrology.
 To set up the Application locally, follow these simple steps:
 
 *Database Setup*:
-1. Create a PostgreSQL database using pgAdmin or any other tool of your choice.
-Navigate to `backend/src/main/resources/application.properties`.
-Update the values of `spring.datasource.username`, `spring.datasource.password`, and `spring.datasource.url` to match your PostgreSQL database credentials and connection URL.
 
-2. Frontend Setup:
-   Open a terminal and navigate to the root of the project.
+1. Create a PostgreSQL database using pgAdmin or any other tool of your choice.
+   Navigate to `backend/src/main/resources/application.properties`.
+   Update the values of `spring.datasource.username`, `spring.datasource.password`, and `spring.datasource.url` to match
+   your PostgreSQL database credentials and connection URL.
+   *Frontend Setup*:
+
+2. Open a terminal and navigate to the root of the project.
    Go to `/frontend/horoscopus-frontend`.
    Run npm install to install the required frontend dependencies.
+   *Backend Setup*:
 
-3. Backend Setup:
-   Navigate to `/backend` in the terminal.
+3. Navigate to `/backend` in the terminal.
    Run mvn clean install to build the backend project.
+   *Start Backend*:
 
-4. Start Backend:
-   After building, start the backend server by running mvn `spring-boot:run` in the `/backend` folder.
+4. After building, start the backend server by running mvn `spring-boot:run` in the `/backend` folder.
 
-5. Start Frontend:
-   In another terminal window/tab, navigate to `/frontend/horoscopus-frontend`.
+   *Start Frontend*:
+5. In another terminal window/tab, navigate to `/frontend/horoscopus-frontend`.
    Start the frontend development server with `npm run dev`.
+   *Accessing the Application*:
 
-6. Accessing the Application:
-   Once both backend and frontend servers are running, access the application by visiting `localhost:5173` in your web browser.
+6. Once both backend and frontend servers are running, access the application by visiting `localhost:5173` in your web
+   browser.
 
 ### Contact
 
 Email: farkasgergot@gmail.com
-
 
 ### Useful resources
 
