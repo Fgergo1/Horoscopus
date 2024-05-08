@@ -30,39 +30,29 @@ public class DateController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> saveNewDate (@RequestBody FreeDateDTO date) {
-        if (dateService.saveNewDate(date)) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<?> saveNewDate(@RequestBody FreeDateDTO date) {
+        dateService.saveNewDate(date);
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
     @PostMapping("/reserve")
-    public ResponseEntity<?> reserveDate (@RequestHeader(name = "Authorization") String authHeader,@RequestBody UUID dateId) {
-        if (dateService.reserveDate(authHeader,dateId)) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<?> reserveDate(@RequestHeader(name = "Authorization") String authHeader, @RequestBody UUID dateId) {
+        dateService.reserveDate(authHeader, dateId);
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
     @GetMapping("/reserved")
     public ResponseEntity<?> getReservedDatesByName(@RequestHeader(name = "Authorization") String authHeader) {
         List<FreeDateDTO> reservedDates = dateService.getDatesByUserName(authHeader);
-        if (!reservedDates.isEmpty()) {
-            return ResponseEntity.ok(reservedDates);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(reservedDates);
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteDate (@RequestParam UUID id) {
-        if (dateService.deleteDateById(id)) {
-            return ResponseEntity.ok().build();
-        }
-        return  ResponseEntity.badRequest().build();
+    public ResponseEntity<?> deleteDate(@RequestParam UUID id) {
+        dateService.deleteDateById(id);
+        return ResponseEntity.ok().build();
     }
 
 }

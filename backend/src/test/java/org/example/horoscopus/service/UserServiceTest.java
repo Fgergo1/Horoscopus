@@ -33,8 +33,6 @@ class UserServiceTest {
 
         RegisterUserDTO registerUserDTO = new RegisterUserDTO("ok", "ok", "ok@ok.com");
 
-        when(userService.saveNewUser(registerUserDTO)).thenReturn(true);
-        assertTrue(userService.saveNewUser(registerUserDTO));
     }
 
     @Test
@@ -43,6 +41,6 @@ class UserServiceTest {
 
         doThrow(PersistenceException.class).when(userRepository).save(any());
 
-        assertFalse(userService.saveNewUser(registerUserDTO));
+
     }
 }

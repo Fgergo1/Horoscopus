@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Service
@@ -34,7 +34,7 @@ public class DateService {
     }
 
     @Transactional
-    public boolean reserveDate(String authHeader, UUID dateId) {
+    public void reserveDate(String authHeader, UUID dateId) {
         if (authHeader == null || authHeader.isEmpty()) {
             throw new IllegalArgumentException("User name cannot be empty or null");
         } else if (dateId == null) {
@@ -61,7 +61,7 @@ public class DateService {
             userRepository.save(user);
             dateRepository.save(freeDate);
 
-            return true;
+
         } catch (PersistenceException ex) {
             throw new PersistenceException("User or date already exist in database!");
         }
@@ -90,16 +90,21 @@ public class DateService {
         UserEntity user = userRepository.findByUserName(jwtUtils.getUsernameFromToken(token))
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
-        return dateRepository.findFreeDateEntitiesByUserEntityUserName(user.getUserName()).stream()
+        List<FreeDateDTO> dates = dateRepository.findFreeDateEntitiesByUserEntityUserName(user.getUserName()).stream()
                 .map((date) -> new FreeDateDTO(date.getId(), date.getTimeInterval(), date.isReserved())).toList();
+
+        if (dates.isEmpty()) {
+            throw new NoSuchElementException("There are no reserved dates!");
+        }
+        return dates;
     }
 
-    public boolean deleteDateById(UUID id) {
+    public void deleteDateById(UUID id) {
 
         if (dateRepository.findById(id).isPresent()) {
             dateRepository.deleteById(id);
-            return true;
+
         }
-        return false;
+        throw new NoSuchElementException("Date is not deleted, because not found!");
     }
 }
