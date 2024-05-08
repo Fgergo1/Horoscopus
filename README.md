@@ -47,22 +47,27 @@ To set up the Application locally, follow these simple steps:
    Navigate to `backend/src/main/resources/application.properties`.
    Update the values of `spring.datasource.username`, `spring.datasource.password`, and `spring.datasource.url` to match
    your PostgreSQL database credentials and connection URL.
+
    *Frontend Setup*:
 
 2. Open a terminal and navigate to the root of the project.
    Go to `/frontend/horoscopus-frontend`.
    Run npm install to install the required frontend dependencies.
+
    *Backend Setup*:
 
 3. Navigate to `/backend` in the terminal.
    Run mvn clean install to build the backend project.
+
    *Start Backend*:
 
 4. After building, start the backend server by running mvn `spring-boot:run` in the `/backend` folder.
 
    *Start Frontend*:
+
 5. In another terminal window/tab, navigate to `/frontend/horoscopus-frontend`.
    Start the frontend development server with `npm run dev`.
+
    *Accessing the Application*:
 
 6. Once both backend and frontend servers are running, access the application by visiting `localhost:5173` in your web
