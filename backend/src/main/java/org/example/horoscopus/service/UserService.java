@@ -27,24 +27,26 @@ public class UserService {
         this.jwtUtils = jwtUtils;
     }
 
-    public boolean saveNewUser(RegisterUserDTO registerUserDTO) {
+    public void saveNewUser(RegisterUserDTO registerUserDTO) {
 
-        UserEntity userEntity = new UserEntity(registerUserDTO.getUserName(), registerUserDTO.getEmail(),
-                passwordEncoder.encode(registerUserDTO.getPassword()), Role.ROLE_USER);
-        try {
-            userRepository.save(userEntity);
-            return true;
-        } catch (PersistenceException e) {
-            throw new PersistenceException("User is already exist in the database!");
+        if (registerUserDTO != null) {
+            UserEntity userEntity = new UserEntity(registerUserDTO.getUserName(), registerUserDTO.getEmail(),
+                    passwordEncoder.encode(registerUserDTO.getPassword()), Role.ROLE_USER);
+            try {
+                userRepository.save(userEntity);
+            } catch (PersistenceException e) {
+                throw new PersistenceException("User is already exist in the database!");
+            }
         }
+        throw new NullPointerException("User is null!");
     }
 
     public boolean checkName(String userName) {
-       return userRepository.existsByUserName(userName);
+        return userRepository.existsByUserName(userName);
     }
 
     public boolean checkEmail(String email) {
-       return userRepository.existsByEmail(email);
+        return userRepository.existsByEmail(email);
     }
 
     public RegisterUserDTO getEmailAndName(String authHeader) {
@@ -52,12 +54,16 @@ public class UserService {
             throw new IllegalArgumentException("User name cannot be empty or null");
         }
 
-        String token = authHeader.substring("Bearer ".length());
+        try {
+            String token = authHeader.substring("Bearer ".length());
 
-        UserEntity user = userRepository.findByUserName(jwtUtils.getUsernameFromToken(token))
-                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+            UserEntity user = userRepository.findByUserName(jwtUtils.getUsernameFromToken(token))
+                    .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
-        return new RegisterUserDTO(user.getUserName(),null,user.getEmail());
+            return new RegisterUserDTO(user.getUserName(), null, user.getEmail());
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new StringIndexOutOfBoundsException("The token is invalid!");
+        }
 
     }
 
